@@ -2,7 +2,7 @@ import java.util.HashMap;
 import java.util.Map;
 import java.util.Stack;
 
-public class test {
+public class Edabit {
     public static void main(String[] args) {
         boolean check = isValid2("({)");
         System.out.println(check);
