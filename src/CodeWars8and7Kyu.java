@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -7,19 +8,22 @@ public class CodeWars8and7Kyu {
 
     public static void main(String[] args) {
 
-        System.out.println(highAndLowWithForLoop("1 5 90 -2 5"));
-
+       List<Boolean> list = new ArrayList<>();
+       list.add(true);
+       list.add(Boolean.parseBoolean("Fa1Se"));
+       list.add(Boolean.TRUE);
+        System.out.println(list.size());
+        System.out.println(list.get(1) instanceof Boolean);
 
     }
 
-    public static boolean isIsogram(String str) {
-        char[] arr = str.toCharArray();
-        System.out.println(arr);
+
+    public static boolean isIsogramv2(String str) {
         int counter = 0;
 
-        for (int i = 0; i < arr.length; i++) {
-            for (int j = i + 1; j < arr.length; j++) {
-                if (Character.toLowerCase(arr[i]) == Character.toLowerCase(arr[j])) {
+        for (int i = 0; i < str.length(); i++) {
+            for (int j = i + 1; j < str.length(); j++) {
+                if (Character.toLowerCase(str.charAt(i)) == Character.toLowerCase(str.charAt(j))) {
                     counter++;
                 }
             }
@@ -29,8 +33,26 @@ public class CodeWars8and7Kyu {
         else return true;
     }
 
-    public static boolean isIsogram2(String str) {
-        return str.length() == str.toLowerCase().chars().distinct().count();
+
+    /**
+     * p0: Current population
+     * percent: increase of population in %
+     * aug: additional population changes (- or + )
+     * p: the endpoint population number
+     * ex: p0 = 1000, percent = 2, aug = 20, p = 2000
+     * p0 + p0*percent + aug >= p , How many years until this is true?
+     */
+
+    public static int nbYear(int p0, double percent, int aug, int p) {
+        int yearCount = 0;
+        percent /= 100;
+
+        while (p0 < p) {
+            yearCount++;
+            p0 += percent * p0 + aug;
+        }
+        return yearCount;
+
     }
 
     public static int duplicateCount(String text) {
@@ -48,6 +70,10 @@ public class CodeWars8and7Kyu {
             }
         }
         return 0;
+    }
+
+    public static String numberToString(int num) {
+        return String.valueOf(num);
     }
 
     public static int countSheeps(Boolean[] arrayOfSheeps) {
@@ -211,7 +237,54 @@ public class CodeWars8and7Kyu {
         //String[] numbersArray = numbers.split(" "); splits the string into multiple strings with space as split target
         int[] ints = Stream.of(numbers.split("\\s")).mapToInt(Integer::parseInt).sorted().toArray();
 
-        return ints[ints.length-1] + " " + ints[0];
+        return ints[ints.length - 1] + " " + ints[0];
+    }
+
+
+    public static String reverseString(String str) {
+        String res = "";
+        for (int i = str.length() - 1; i >= 0; i--) {
+            res += str.charAt(i);
+        }
+        return res;
+    }
+
+    public static String reverseString2(String str) {
+        return new StringBuilder(str).reverse().toString();
+    }
+
+    public static List<String> addNumberingToStringInArray(List<String> lines) {
+        List<String> arr = new ArrayList<>();
+        for (int i = 0; i < lines.size(); i++) {
+            String str = i + 1 + ": " + lines.get(i);
+            arr.add(str);
+        }
+        return arr;
+    }
+
+    public static List<String> addNumberingToStringInArray2(List<String> lines) {
+        for (int i = 0; i < lines.size(); i++) {
+            lines.set(i, (i + 1) + ": " + lines.get(i));
+        }
+        return lines;
+    }
+
+    public static int findShortestWord(String s) {
+        String[] arr = s.split("\\s");
+        int shortestWord = arr[0].length();
+
+        for (int i = 1; i < arr.length; i++) {
+            if (shortestWord > arr[i].length())
+                shortestWord = arr[i].length();
+        }
+        return shortestWord;
+    }
+
+    public static int findShortestWordWithStreams(String s) {
+        return Stream.of(s.split(" "))
+                .mapToInt(String::length)
+                .min()
+                .getAsInt();
     }
 
     public static String highAndLowWithForLoop(String numbers) {
@@ -220,16 +293,55 @@ public class CodeWars8and7Kyu {
         int biggestNumber = Integer.valueOf(numbersArray[0]);
         int smallestNumber = Integer.valueOf(numbersArray[0]);
 
-        for (String numberString : numbersArray){
+        for (String numberString : numbersArray) {
             Integer numberInteger = Integer.valueOf(numberString);
-            if (numberInteger < smallestNumber){
+            if (numberInteger < smallestNumber) {
                 smallestNumber = numberInteger;
             }
-            if (biggestNumber < numberInteger){
+            if (biggestNumber < numberInteger) {
                 biggestNumber = numberInteger;
             }
         }
-        return biggestNumber+" "+smallestNumber;
+        return biggestNumber + " " + smallestNumber;
+    }
+
+    public static String highAndLow2(String numbers) {
+        int[] arr = Arrays.stream(numbers.split(" ")).mapToInt(Integer::parseInt).sorted().toArray();
+
+        return arr[arr.length - 1] + " " + arr[0];
+    }
+
+
+    public static String getMiddle(String word) {
+        int length = word.length();
+        StringBuilder sb = new StringBuilder();
+
+        if (length % 2 == 0) {
+            sb.append(word.charAt(length / 2 - 1));
+            sb.append(word.charAt(length / 2));
+        } else {
+            sb.append(word.charAt(length / 2));
+        }
+        return sb.toString();
+    }
+
+    public static boolean isSquare(int n) {
+        long sqrtRounded = Math.round(Math.sqrt(n));
+
+        return sqrtRounded * sqrtRounded == n;
+
+    }
+    
+    /** Multiply every digit in integer continuously until left with a single digit, return count */
+
+    public static int persistence(long n) {
+
+        String s = Long.toString(n);
+        int counter = 0;
+        int x = 20;
+
+
+        return counter;
     }
 }
 

@@ -4,7 +4,7 @@ import java.util.Stack;
 
 public class Edabit {
     public static void main(String[] args) {
-        boolean check = isValid2("({)");
+        boolean check = isValid2("[()][{([])}]");
         System.out.println(check);
     }
 
