@@ -1,6 +1,4 @@
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 
@@ -32,6 +30,22 @@ public class CodeWars8and7Kyu {
             return false;
         else return true;
     }
+
+    public static boolean isIsogramv3(String str) {
+        Set<Character> set = new HashSet<>();
+
+        for (char ch : str.toLowerCase().toCharArray()) {
+            if (Character.isLetter(ch)) {
+                if (set.contains(ch)) {
+                    return false;
+                }
+                set.add(ch);
+            }
+        }
+
+        return true;
+    }
+
 
 
     /**
