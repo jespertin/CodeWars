@@ -39,7 +39,7 @@ public class CodeWars6Kyu {
 
         return result;
     }
-    public static int digital_root2(int n) {
+        public static int digital_root2(int n) {
         return (n != 0 && n%9 == 0) ? 9 : n % 9;
     }
 
@@ -361,5 +361,17 @@ public class CodeWars6Kyu {
             }
         }
         return a;
+    }
+
+    public static int digital_rootV3(int n) {
+        while (n > 9) {
+            int sum = 0;
+            while (n > 0) {
+                sum += n % 10;
+                n /= 10;
+            }
+            n = sum;
+        }
+        return n;
     }
 }
