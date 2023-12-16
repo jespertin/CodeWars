@@ -381,4 +381,32 @@ public class CodeWars6Kyu {
         }
         return n;
     }
+
+    /**
+     * Given a list and a number, create a new list that contains each number of list at most N times, without reordering.
+     * For example if the input number is 2, and the input list is [1,2,3,1,2,1,2,3],
+     * you take [1,2,3,1,2], drop the next [1,2] since this would lead to 1 and 2 being in the result 3 times,
+     * and then take 3, which leads to [1,2,3,1,2,3].
+     * With list [20,37,20,21] and number 1, the result would be [20,37,21].
+     * */
+
+    public static int[] deleteNth(int[] elements, int maxOccurrences) {
+        Map<Integer, Integer> occurrences = new HashMap<>();
+        List<Integer> resultList = new ArrayList<>();
+
+        for (int num : elements) {
+            int count = occurrences.getOrDefault(num, 0);
+            if (count < maxOccurrences) {
+                resultList.add(num);
+                occurrences.put(num, count + 1);
+            }
+        }
+
+        int[] resultArray = new int[resultList.size()];
+        for (int i = 0; i < resultList.size(); i++) {
+            resultArray[i] = resultList.get(i);
+        }
+
+        return resultArray;
+    }
 }
