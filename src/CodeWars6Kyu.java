@@ -1,5 +1,6 @@
 import java.lang.reflect.Array;
 import java.util.*;
+import java.util.stream.IntStream;
 
 public class CodeWars6Kyu {
 
@@ -386,7 +387,7 @@ public class CodeWars6Kyu {
      * Given a list and a number, create a new list that contains each number of list at most N times, without reordering.
      * For example if the input number is 2, and the input list is [1,2,3,1,2,1,2,3],
      * you take [1,2,3,1,2], drop the next [1,2] since this would lead to 1 and 2 being in the result 3 times,
-     * and then take 3, which leads to [1,2,3,1,2,3].
+     * cand then take 3, which leads to [1,2,3,1,2,3].
      * With list [20,37,20,21] and number 1, the result would be [20,37,21].
      * */
 
@@ -409,4 +410,23 @@ public class CodeWars6Kyu {
 
         return resultArray;
     }
+
+    /**
+     * Your goal in this kata is to implement a difference function, which subtracts one list from another and returns the result.
+     *
+     * It should remove all values from list a, which are present in list b keeping their order.
+     *
+     * Kata.arrayDiff(new int[] {1, 2}, new int[] {1}) => new int[] {2}
+     * If a value is present in b, all of its occurrences must be removed from the other:
+     *
+     * Kata.arrayDiff(new int[] {1, 2, 2, 2, 3}, new int[] {2}) => new int[] {1, 3}
+     *
+     * */
+    public static int[] arrayDiffV2(int[] a, int[] b) {
+        return Arrays.stream(a)
+                .filter(num -> !IntStream.of(b).anyMatch(x -> x == num))
+                .toArray();
+    }
+
+
 }
