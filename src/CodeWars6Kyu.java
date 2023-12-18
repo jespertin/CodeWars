@@ -428,5 +428,25 @@ public class CodeWars6Kyu {
                 .toArray();
     }
 
+    public static String toCamelCase(String str) {
+        if (str == null || str.isEmpty()) {
+            return "";
+        }
+
+        String[] words;
+        if (str.contains("-")) {
+            words = str.split("-");
+        } else {
+            words = str.split("_");
+        }
+
+        StringBuilder camelCase = new StringBuilder(words[0]);
+        for (int i = 1; i < words.length; i++) {
+            camelCase.append(Character.toUpperCase(words[i].charAt(0))).append(words[i].substring(1));
+        }
+
+        return camelCase.toString();
+    }
+
 
 }
