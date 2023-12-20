@@ -469,5 +469,25 @@ public class CodeWars6Kyu {
         return letters.size() == 26;
     }
 
+    /**
+     * Find unique number in array, array size always 3 or bigger in size. Always contains unique number
+     * */
+    public static double findUniq(double[] arr) {
+        double uniqueNumber = 0.0;
+
+        if (arr[0] != arr[1] && arr[0] != arr[2]) {
+            uniqueNumber = arr[0];
+        } else {
+            for (int i = 1; i < arr.length; i++) {
+                if (arr[i] != arr[0]) {
+                    uniqueNumber = arr[i];
+                    break;
+                }
+            }
+        }
+
+        return uniqueNumber;
+    }
+
 
 }
